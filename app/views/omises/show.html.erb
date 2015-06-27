@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @omise.name %>
+</p>
+
+<p>
+  <strong>Tel:</strong>
+  <%= @omise.tel %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @omise.address %>
+</p>
+
+<p>
+  <strong>Homepage:</strong>
+  <%= @omise.homepage %>
+</p>
+
+<%= link_to 'Edit', edit_omise_path(@omise) %> |
+<%= link_to 'Back', omises_path %>
