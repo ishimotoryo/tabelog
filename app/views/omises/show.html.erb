@@ -19,6 +19,14 @@
   <strong>Homepage:</strong>
   <%= @omise.homepage %>
 </p>
+<hr>
+<% @omise.reviews.each do |review|  %>
+<p>投稿者：<%= review.user.email %></p>
+<p>評価：<%= review.rating %></p>
+<p>口コミ：<%= review.body %></p>
 
+<% end -%>
+<hr>
 <%= link_to 'Edit', edit_omise_path(@omise) %> |
-<%= link_to 'Back', omises_path %>
+<%= link_to 'Back', omises_path %> |
+<%= link_to '口コミ作成', new_omise_review_path(@omise) %>

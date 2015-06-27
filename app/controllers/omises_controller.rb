@@ -1,6 +1,6 @@
 class OmisesController < ApplicationController
   before_action :set_omise, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /omises
   # GET /omises.json
   def index
