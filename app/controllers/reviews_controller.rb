@@ -13,6 +13,9 @@ class ReviewsController < ApplicationController
     @review.save
     redirect_to omise_url(@review.omise)
   end
+  def edit
+  end
+
   private
   def review_params
     params.require(:review).permit(
@@ -20,4 +23,5 @@ class ReviewsController < ApplicationController
       :body
       )
   end
+
 end

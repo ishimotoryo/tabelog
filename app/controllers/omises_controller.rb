@@ -10,6 +10,8 @@ class OmisesController < ApplicationController
   # GET /omises/1
   # GET /omises/1.json
   def show
+    @average = Review.where(:omise_id => params[:id]).average(:rating)
+    @average_show = @average.round(1)
   end
 
   # GET /omises/new
