@@ -8,7 +8,7 @@
         <h4>店舗電話番号：<%= @omise.tel %></h4>
         <h4>店舗住所：<%= @omise.address %></h4>
       </ul>
-<%= form_for [@omise, @review]  do |f| %>
+<!--<%= form_for [@omise, @review]  do |f| %>
 <div class="form-group">
   <%= f.label :rating , "評価" %><br>
   <%= f.text_field :rating , class: "form-control" %>
@@ -18,8 +18,8 @@
 <%= f.text_area :body, class: "form-control" %>
 </div>
 <%= f.submit %>
-<% end -%>
-
+<% end -%>-->
+<%= render 'reviews/form' %>
   </div>
 </div>
 
