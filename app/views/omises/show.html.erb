@@ -1,9 +1,14 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-lg-1">
 
-<p>
-  <strong>店名:</strong>
-  <%= @omise.name %>
-</p>
+  </div>
+
+  <div class="col-lg-10">
+
+
+  <h4>店名:<%= @omise.name %></h4>
+
 
 <p>
   <strong>電話番号:</strong>
@@ -21,14 +26,63 @@
 </p>
 <strong>平均点：</strong>
 <%= @average_show %>
+
+
+<% if @average_show > 4.5 %>
+<p>★★★★★</p>
+<% elsif @average_show >3.5 %>
+<p>★★★★☆</p>
+<% elsif @average_show >2.5 %>
+<p>★★★☆☆</p>
+<% elsif @average_show >1.5 %>
+<p>★★☆☆☆</p>
+<% elsif @average_show >1 %>
+<p>★☆☆☆☆</p>
+<% else %>
+<p>☆☆☆☆☆</p>
+<% end -%>
+
+
+
 <hr>
 <% @omise.reviews.each do |review|  %>
 <p>投稿者：<%= review.user.email %></p>
 <p>評価：<%= review.rating %></p>
+<% if (review.rating > 4.5) %>
+<p>★★★★★</p>
+<% elsif review.rating  >3.5 %>
+<p>★★★★☆</p>
+<% elsif review.rating  >2.5 %>
+<p>★★★☆☆</p>
+<% elsif review.rating  >1.5 %>
+<p>★★☆☆☆</p>
+<% elsif review.rating  >0.5 %>
+<p>★☆☆☆☆</p>
+<% else %>
+<p>☆☆☆☆☆</p>
+<% end -%>
 <p>口コミ：<%= review.body %></p>
 <hr>
 <% end -%>
-<hr>
-<%= link_to 'Edit', edit_omise_path(@omise) %> |
-<%= link_to 'Back', omises_path %> |
-<%= link_to '口コミ作成', new_omise_review_path(@omise) %>
+
+
+<%# hoges = Review.where("omise_id = ? and user_id = ?", @omise.id, current_user.id) %>
+<%# hoges.each do |hoge| %>
+<%#= hoge.id %>
+<%# end %>
+<%#= Review.find_by(omise_id: @omise.id, user_id: current_user.id).id %>
+
+<% if user_signed_in? %>
+  <% if Review.find_by(omise_id: @omise.id, user_id: current_user.id).nil? %>
+  <%= link_to '口コミ作成', new_omise_review_path(@omise), class: "btn btn-default"  %>
+  <% else %>
+
+  <%= link_to 'あなたの口コミを編集する', edit_omise_review_path(@omise, Review.find_by(omise_id: @omise.id, user_id: current_user.id).id ) , class: "btn btn-default" %>
+  <% end -%>
+<% end -%>
+
+<%= link_to 'レストラン一覧へもどる', omises_path , class: "btn btn-default" %>
+
+</div>
+
+</div>

@@ -14,8 +14,14 @@ class ReviewsController < ApplicationController
     redirect_to omise_url(@review.omise)
   end
   def edit
+    @review = Review.find(params[:id])
+    @omise = Omise.find(params[:omise_id])
   end
-
+  def update
+    @review = Review.find(params[:id])
+    @review.update_attributes(review_params)
+    redirect_to omise_url(@review.omise)
+  end
   private
   def review_params
     params.require(:review).permit(

@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-lg-1">
+  </div>
+  <div class="col-lg-10">
+    <h1>投稿編集</h1>
+      <ul>
+        <h4>店舗名：<%= @omise.name %></h4>
+        <h4>店舗電話番号：<%= @omise.tel %></h4>
+        <h4>店舗住所：<%= @omise.address %></h4>
+      </ul>
+<%= form_for [@omise, @review]  do |f| %>
+<div class="form-group">
+  <%= f.label :rating , "評価" %><br>
+  <%= f.text_field :rating , class: "form-control" %>
+</div>
+<div class="form-group">
+<%= f.label :body , "口コミ" %><br>
+<%= f.text_area :body, class: "form-control" %>
+</div>
+<%= f.submit %>
+<% end -%>
+
+  </div>
+</div>
+
+<!-- <h1><%= @review.body %></h1> -->

@@ -1,6 +1,6 @@
 class OmisesController < ApplicationController
   before_action :set_omise, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
   # GET /omises
   # GET /omises.json
   def index
@@ -11,7 +11,16 @@ class OmisesController < ApplicationController
   # GET /omises/1.json
   def show
     @average = Review.where(:omise_id => params[:id]).average(:rating)
+
+    if Review.where(:omise_id => params[:id]).count == 0
+        @average_show = 0
+    elsif Review.where(:omise_id => params[:id]).count == 1
+
+      @average_show = @average
+    else
     @average_show = @average.round(1)
+    end
+
   end
 
   # GET /omises/new

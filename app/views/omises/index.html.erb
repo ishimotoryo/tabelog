@@ -1,10 +1,17 @@
-<p id="notice"><%= notice %></p>
+<p id="notice"><%#= notice %></p>
+
 <div class="row">
-  <div class="col-lg-12">
+<div class="col-lg-1" >
+
+</div>
+
+  <div class="col-lg-10" >
+<div class="middle" >
+
 
 <h1>レストラン一覧</h1>
 <div class="container">
-<table class="table">
+<!-- <table class="table">
   <thead>
     <tr>
       <th>店名</th>
@@ -24,15 +31,40 @@
         <td><%= omise.homepage %></td>
         <td><%= link_to '口コミをみる', omise , class: "btn btn-default btn-xs" %></td>
         <td><%= link_to 'レストラン情報編集', edit_omise_path(omise) , class: "btn btn-success btn-xs"  %></td>
-        <td><%= link_to '削除', omise, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger btn-xs"%></td>
+        <td><%= link_to '削除', omise, method: :delete, data: { confirm: '本当にこのレストランを削除しますか？' } , class: "btn btn-danger btn-xs"%></td>
       </tr>
     <% end %>
   </tbody>
-</table>
+</table> -->
+</div>
+<% @omises.each do |omise| %>
+<div class="panel panel-default" >
+
+  <h3 style="color:#00FF7F">　<%= omise.name %></h3>
+
+
+
+  <div class="panel-body">
+    <p>電話番号：<%= omise.tel %></p>
+    <p>店舗住所：<%= omise.address %></p>
+    <p>店舗ホームページ：<%= omise.homepage %></p>
+    <table>
+      <thead>
+        <th><%= link_to '詳細', omise , class: "btn btn-default btn-xs" %></th>
+<% if user_signed_in?  %>
+        <th><%= link_to 'レストラン情報編集', edit_omise_path(omise) , class: "btn btn-default btn-xs"  %></th>
+        <th><%= link_to '削除', omise, method: :delete, data: { confirm: '本当にこのレストランを削除しますか？' } , class: "btn btn-default btn-xs"%></th>
+        <% end -%>
+      </thead>
+    </table>
+
+  </div>
+</div>
+<% end -%>
 </div>
 <br>
 <div class="container">
-<%= link_to '新規レストラン登録', new_omise_path %>
+<%= link_to '新規レストラン登録', new_omise_path , class: "btn btn-lg btn-default" %>
   </div>
   </div>
 </div>
